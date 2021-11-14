@@ -2,6 +2,7 @@ using Library.API.Controllers;
 using Library.API.Data.Models;
 using Library.API.Data.Services;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Xunit;
@@ -37,34 +38,90 @@ namespace Library.Test
         }
 
         [Theory]
-        [ClassData(typeof(BookClassData))]
-        public void AddBookTest(Book book)
+        [ClassData(typeof(ValidBookClassData))]
+        [ClassData(typeof(InvalidBookClassData))]
+        public void AddBookTest(listTestBooks books)
         {
             //Arrange
 
             //Act
-            var postResult = _controller.Post(book);
+                var postResult = _controller.Post(books.book);
+
             //Assert
-            Assert.IsType<CreatedAtActionResult>(postResult.Result);
-            var resBook = postResult.Result as CreatedAtActionResult;
-            Assert.IsType<Book>(resBook.Value);
-            var newBook = resBook.Value as Book;
-            Assert.NotNull(newBook.Id);
+            if (books.IsValid)
+            {
+
+                Assert.IsType<CreatedAtActionResult>(postResult.Result);
+                var resBook = postResult.Result as CreatedAtActionResult;
+                Assert.IsType<Book>(resBook.Value);
+                var newBook = resBook.Value as Book;
+                Assert.Equal(books.book.Author, newBook.Author);
+                Assert.Equal(books.book.Title, newBook.Title);
+                Assert.Equal(books.book.Description, newBook.Description);
+            }
+            else
+            {
+                _controller.ModelState.AddModelError("Title", "Title is a required field");
+                postResult = _controller.Post(books.book);
+
+                Assert.IsType<BadRequestObjectResult>(postResult.Result);
+            }
         }
 
+        [Theory]
+        [InlineData("ba66ec07-1a1e-4a13-83a5-1ede4215f48a", "Love Me", "ba66ec07-1a1e-4a13-83a5-1ede4215f111")]
+        public void GetOneTest(string Id1, string title, string Id2)
+        {
+            //Arrange
+            var validId = new Guid(Id1);
+            var invalidId = new Guid(Id2);
 
-        public class BookClassData : IEnumerable<object[]>
+            //Act
+            var SuccessResult = _controller.Get(validId);
+            var FailedResult = _controller.Get(invalidId);
+
+            //Assert
+            Assert.IsType<OkObjectResult>(SuccessResult.Result);
+            Assert.IsType<NotFoundResult>(FailedResult.Result);
+            var resBook = SuccessResult.Result as OkObjectResult;
+            Assert.IsType<Book>(resBook.Value);
+            var retBook = resBook.Value as Book;
+            Assert.Equal(validId, retBook.Id);
+            Assert.Equal(title, retBook.Title);
+        }
+
+        public class listTestBooks
+        {
+            public Book book { get; set; }
+            public bool IsValid { get; set; }
+        }
+
+        public class ValidBookClassData : IEnumerable<object[]>
         {
             public IEnumerator<object[]> GetEnumerator()
             {
                 yield return new object[] {
-                    new Book { Title = "test" }
+                    new listTestBooks{ book = new Book { Title = "test" },IsValid = true }
 
                 };
             }
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-           
+
+        }
+
+        public class InvalidBookClassData : IEnumerable<object[]>
+        {
+            public IEnumerator<object[]> GetEnumerator()
+            {
+                yield return new object[] {
+                    new listTestBooks{ book = new Book { Description = "test" },IsValid = false }
+
+                };
+            }
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+
         }
 
 
