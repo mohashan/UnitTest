@@ -1,0 +1,14 @@
+G:\Programming\Test\UnitTest\CalculatorApp\obj\Debug\net6.0\CalculatorApp.GeneratedMSBuildEditorConfig.editorconfig
+G:\Programming\Test\UnitTest\CalculatorApp\obj\Debug\net6.0\CalculatorApp.AssemblyInfoInputs.cache
+G:\Programming\Test\UnitTest\CalculatorApp\obj\Debug\net6.0\CalculatorApp.AssemblyInfo.cs
+G:\Programming\Test\UnitTest\CalculatorApp\obj\Debug\net6.0\CalculatorApp.csproj.CoreCompileInputs.cache
+G:\Programming\Test\UnitTest\CalculatorApp\bin\Debug\net6.0\CalculatorApp.exe
+G:\Programming\Test\UnitTest\CalculatorApp\bin\Debug\net6.0\CalculatorApp.deps.json
+G:\Programming\Test\UnitTest\CalculatorApp\bin\Debug\net6.0\CalculatorApp.runtimeconfig.json
+G:\Programming\Test\UnitTest\CalculatorApp\bin\Debug\net6.0\CalculatorApp.dll
+G:\Programming\Test\UnitTest\CalculatorApp\bin\Debug\net6.0\ref\CalculatorApp.dll
+G:\Programming\Test\UnitTest\CalculatorApp\bin\Debug\net6.0\CalculatorApp.pdb
+G:\Programming\Test\UnitTest\CalculatorApp\obj\Debug\net6.0\CalculatorApp.dll
+G:\Programming\Test\UnitTest\CalculatorApp\obj\Debug\net6.0\ref\CalculatorApp.dll
+G:\Programming\Test\UnitTest\CalculatorApp\obj\Debug\net6.0\CalculatorApp.pdb
+G:\Programming\Test\UnitTest\CalculatorApp\obj\Debug\net6.0\CalculatorApp.genruntimeconfig.cache
