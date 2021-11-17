@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Library.Test
@@ -36,6 +37,7 @@ namespace Library.Test
             var bookList = list.Value as List<Book>;
             Assert.Equal(2, bookList.Count);
         }
+
 
         [Theory]
         [ClassData(typeof(ValidBookClassData))]
@@ -69,7 +71,7 @@ namespace Library.Test
         }
 
         [Theory]
-        [InlineData("ba66ec07-1a1e-4a13-83a5-1ede4215f48a", "Love Me", "ba66ec07-1a1e-4a13-83a5-1ede4215f111")]
+        [InlineData("ba66ec07-1a1e-4a13-83a5-1ede4215f48a", "Love Me", "ba66ec07-1a1e-4a13-83a5-1ede4215f222")]
         public void GetOneTest(string Id1, string title, string Id2)
         {
             //Arrange
@@ -90,11 +92,38 @@ namespace Library.Test
             Assert.Equal(title, retBook.Title);
         }
 
+        [Theory]
+        [InlineData("ba66ec07-1a1e-4a13-83a5-1ede4215f48a", "ba66ec07-1a1e-4a13-83a5-1ede4215f222")]
+        public void DeleteBookTest(string Id1, string Id2)
+        {
+            //Arrange
+            var validId = new Guid(Id1);
+            var invalidId = new Guid(Id2);
+
+            //Act
+            var FailedResult = _controller.Remove(invalidId);
+
+            //Assert
+            Assert.IsType<NotFoundResult>(FailedResult);
+            Assert.Equal(2, _service.GetAll().Count());
+
+
+            // Act
+            var SuccessResult = _controller.Remove(validId);
+
+            //Assert
+            Assert.IsType<OkResult>(SuccessResult);
+            Assert.Equal(1, _service.GetAll().Count());
+
+        }
+
         public class listTestBooks
         {
             public Book book { get; set; }
             public bool IsValid { get; set; }
         }
+
+
 
         public class ValidBookClassData : IEnumerable<object[]>
         {

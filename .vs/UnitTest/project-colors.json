@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "73030cff-0b05-49c2-97af-1c9234012b1f": {
+      "ProjectGuid": "73030cff-0b05-49c2-97af-1c9234012b1f",
+      "DisplayName": "Library.API",
+      "ColorIndex": 0
+    },
+    "1744b290-3c34-4006-911b-1820523d4e3f": {
+      "ProjectGuid": "1744b290-3c34-4006-911b-1820523d4e3f",
+      "DisplayName": "CalculatorApp",
+      "ColorIndex": 1
+    },
+    "98eefddc-ad22-43ed-9f94-2944b042965d": {
+      "ProjectGuid": "98eefddc-ad22-43ed-9f94-2944b042965d",
+      "DisplayName": "Library.Test",
+      "ColorIndex": 2
+    },
+    "a7de65f2-c6d7-4e6c-a987-36f5e4f88316": {
+      "ProjectGuid": "a7de65f2-c6d7-4e6c-a987-36f5e4f88316",
+      "DisplayName": "LibraryApp",
+      "ColorIndex": 3
+    },
+    "50a0a4cb-5d41-4a40-965d-cbdddba61a8f": {
+      "ProjectGuid": "50a0a4cb-5d41-4a40-965d-cbdddba61a8f",
+      "DisplayName": "LibraryApp.Test",
+      "ColorIndex": 4
+    }
+  },
+  "NextColorIndex": 5
+}

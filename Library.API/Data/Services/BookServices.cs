@@ -16,16 +16,16 @@ namespace Library.API.Data.Services
             {
                 Author = "j.Hardy",
                 Description = "",
-                Id = Guid.NewGuid(),
-                Title = "Love Me"
+                Id = new Guid("ba66ec07-1a1e-4a13-83a5-1ede4215f111"),
+                Title = "Hate Me"
             });
 
             books.Add(new Book
             {
                 Author = "j.Softy",
                 Description = "",
-                Id = Guid.NewGuid(),
-                Title = "Hate Me"
+                Id = new Guid("ba66ec07-1a1e-4a13-83a5-1ede4215f48a"),
+                Title = "Love Me"
             });
         }
         public Book Add(Book newBook)
